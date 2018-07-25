@@ -15,12 +15,11 @@ import { StewardessesComponent } from './stewardesses/stewardesses.component';
 import { TicketsComponent } from './tickets/tickets.component';
 
 
-import { DecimalPipe } from '@angular/common';
-import { DatePipe } from '@angular/common';
 import { FlightdetailComponent } from './flightdetail/flightdetail.component';
 
 const appRoutes: Routes = [
   { path: 'flights', component: FlightsComponent },
+  { path: 'flight-details/:id', component: FlightdetailComponent},
   { path: 'crews', component: CrewsComponent },
   { path: 'departures', component: DeparturesComponent },
   { path: 'pilots', component: PilotsComponent },
@@ -28,6 +27,7 @@ const appRoutes: Routes = [
   { path: 'planetypes', component: PlanetypesComponent },
   { path: 'stewardesses', component: StewardessesComponent },
   { path: 'tickets', component: TicketsComponent },
+  
  
 ];
 

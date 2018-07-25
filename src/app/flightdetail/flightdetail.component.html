@@ -1,3 +1,44 @@
-<p>
-  flightdetail works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-10">
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Departure from</th>
+                    <th>Time of departure</th>
+                    <th>Destination</th>
+                    <th>Arrival time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ flight.number }}</td>
+                    <td>{{ flight.departureFrom }}</td>
+                    <td>{{ flight.timeOfDeparture | date:'short' }}</td>
+                    <td>{{ flight.destination }}</td>
+                    <td>{{ flight.arrivalTime | date:'short' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="col-md-2">
+            <h3>Add Flight</h3>
+            <div class="form-group">
+                <label for="departure-from">departure from:</label>
+                <input name="departureFrom"  id="departure-from" [(ngModel)]="newFlight.departureFrom" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="time-of-departure">time of departure</label>
+                <input name="departureTime" type="date" id="time-of-departure" [(ngModel)]="newFlight.timeOfDeparture" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="destination">destination</label>
+                <input name="destination"  id="destination" [(ngModel)]="newFlight.destination"  class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="arrival-time">arrival time</label>
+                <input name="arrivalTime"  type = "date" type="date" id="arrival-time" [(ngModel)]="newFlight.arrivalTime" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary" (click)="addFlight(newFlight);">Save</button>
+        </form>
+    </div>
+</div>

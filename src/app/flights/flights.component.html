@@ -11,15 +11,15 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor="let flightInfo of flights"> 
-                    <td>{{ flightInfo.number }}</td>
-                    <td>{{ flightInfo.departureFrom }}</td>
-                    <td>{{ flightInfo.timeOfDeparture | date:'short' }}</td>
-                    <td>{{ flightInfo.destination }}</td>
-                    <td>{{ flightInfo.arrivalTime | date:'short' }}</td>
+                <tr *ngFor="let flight of flights"> 
+                    <td>{{ flight.number }}</td>
+                    <td>{{ flight.departureFrom }}</td>
+                    <td>{{ flight.timeOfDeparture | date:'short' }}</td>
+                    <td>{{ flight.destination }}</td>
+                    <td>{{ flight.arrivalTime | date:'short' }}</td>
                     <td>
-                        <button class="btn btn-link btn-sm"(click)="editRecord(flightInfo)">Detail(edit)</button> 
-                        <button class = "btn btn-danger btn-xs" (click)="deleteRecord(flightInfo.number)">Remove</button>
+                        <button class="btn btn-link btn-sm"(click)="editRecord(flight)">Detail(edit)</button> 
+                        <button class = "btn btn-danger btn-xs" (click)="deleteRecord(flight.number)">Remove</button>
                     </td>
                 </tr>
             </tbody>
