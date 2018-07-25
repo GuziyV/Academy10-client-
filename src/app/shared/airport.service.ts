@@ -21,8 +21,9 @@ export class AirportService {
     return this.http.post(this.accessPointUrl + type, entity, {headers: this.headers});
   }
 
-  public remove(type: string, entity) {
-    return this.http.delete(this.accessPointUrl + type + '/' + entity.id, {headers: this.headers});
+  public remove(type: string, id: Number) {
+    let uri = this.accessPointUrl + type + '/' + id;
+    return this.http.delete(this.accessPointUrl + type + '/' + id, {headers: this.headers});
   }
 
   public update(type: string, entity) {

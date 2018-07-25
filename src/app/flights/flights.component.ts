@@ -1,6 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
 import { AirportService } from '../shared/airport.service';
-import * as _ from 'lodash';
 
 @Component({
   selector: 'app-flights',
@@ -31,15 +30,22 @@ export class FlightsComponent implements OnInit {
     }
   }
 
-  public addFlight(){
-    debugger;
-    let insertFlight = Object.assign({}, this.newFlight);
+  public addFlight(newFlight: any){
+    let insertFlight = Object.assign({}, newFlight);
     this.airportService.add("flights", insertFlight).subscribe(
       flightRecord => {
-        debugger;
         insertFlight.number = this.flights[this.flights.length-1].number+1;
-        this.flights.push(insertFlight)});
-      
+        this.flights.push(insertFlight);
+      });
+  }
+
+  public deleteRecord(number: Number)
+  {
+    this.airportService.remove("flights", number).subscribe(
+      flightRecord => {
+    this.flights = this.flights.filter(f => f.number != number)
+  });
+    
   }
 
 };

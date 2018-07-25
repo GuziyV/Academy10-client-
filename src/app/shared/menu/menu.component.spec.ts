@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AddOrUpdateFlightComponent } from './add-or-update-flight.component';
+import { MenuComponent } from './menu.component';
 
-describe('AddOrUpdateFlightComponent', () => {
-  let component: AddOrUpdateFlightComponent;
-  let fixture: ComponentFixture<AddOrUpdateFlightComponent>;
+describe('MenuComponent', () => {
+  let component: MenuComponent;
+  let fixture: ComponentFixture<MenuComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ AddOrUpdateFlightComponent ]
+      declarations: [ MenuComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AddOrUpdateFlightComponent);
+    fixture = TestBed.createComponent(MenuComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
