@@ -1,7 +1,7 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AirportService } from './airport.service';
-import { HttpClientModule } from '../../../node_modules/@angular/common/http';
+import { FlightsService } from './flights.service';
+import { HttpClientModule } from '@angular/common/http';
 import { MenuComponent } from './menu/menu.component';
 
 @NgModule({
@@ -9,7 +9,7 @@ import { MenuComponent } from './menu/menu.component';
     CommonModule,
     HttpClientModule
   ],
-  providers: [AirportService],
+  providers: [FlightsService],
   declarations: [MenuComponent],
   exports: [MenuComponent]
 })
@@ -17,7 +17,7 @@ export class SharedModule {
   static forRoot(): ModuleWithProviders {
     return {
       ngModule: SharedModule,
-      providers: [ AirportService ],
+      providers: [ FlightsService ],
     };
   }
  }

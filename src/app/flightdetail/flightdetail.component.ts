@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { Flight } from '../shared/models/flight';
-import { AirportService } from '../shared/airport.service';
+import { FlightsService } from '../shared/flights.service';
 
 @Component({
   selector: 'app-flightdetail',
@@ -12,7 +12,7 @@ export class FlightdetailComponent implements OnInit {
 
   public flight: Flight;
 
-  constructor(private route: ActivatedRoute, private flightService: AirportService) { 
+  constructor(private route: ActivatedRoute, private flightService: FlightsService) { 
     this.flight = new Flight();
     this.route.params.subscribe( params =>{
       flightService.getById(params.id).subscribe((data: Flight) => {
@@ -23,8 +23,8 @@ export class FlightdetailComponent implements OnInit {
 
    public saveEditing(flight: Flight){
     let flightWithoutTickets = Object.assign({}, flight);
-    flight.tickets = null;
-    this.flightService.update(flight).subscribe(
+    flightWithoutTickets.tickets = null;
+    this.flightService.update(flightWithoutTickets).subscribe(
       flightRecord => {
         if(flightRecord.isSuccessStatusCode == false){
           alert("Wrong input");

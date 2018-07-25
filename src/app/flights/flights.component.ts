@@ -1,7 +1,7 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { AirportService } from '../shared/airport.service';
+import { FlightsService } from '../shared/flights.service';
 import { Flight } from '../shared/models/flight';
-import { Router } from '../../../node_modules/@angular/router';
+import { Router } from '@angular/router';
 @Component({
   selector: 'app-flights',
   templateUrl: './flights.component.html',
@@ -13,8 +13,8 @@ export class FlightsComponent implements OnInit {
   public flights: Flight[];
   public newFlight: Flight;
 
-  constructor(private airportService: AirportService, private router: Router) { 
-    airportService.get('flights').subscribe((data: Flight[]) => this.flights = data);
+  constructor(private flightService: FlightsService, private router: Router) { 
+    flightService.get().subscribe((data: Flight[]) => this.flights = data);
     this.newFlight = new Flight();
   }
 
@@ -24,7 +24,7 @@ export class FlightsComponent implements OnInit {
 
   public addFlight(newFlight: Flight){
     let insertFlight = Object.assign({}, newFlight);
-    this.airportService.add("flights", insertFlight).subscribe(
+    this.flightService.add(insertFlight).subscribe(
       flightRecord => {
         if(flightRecord.isSuccessStatusCode == false){
           alert("Wrong input");
@@ -36,7 +36,7 @@ export class FlightsComponent implements OnInit {
   }
 
   public deleteRecord(number: Number){
-    this.airportService.remove("flights", number).subscribe(
+    this.flightService.remove(number).subscribe(
       flightRecord => {
     this.flights = this.flights.filter(f => f.number != number)
    });   
