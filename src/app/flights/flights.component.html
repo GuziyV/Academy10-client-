@@ -1,0 +1,47 @@
+<a href="#" id="new-button">New</a>
+<table>
+<thead>
+    <tr>
+        <th>number</th>
+        <th>departure from</th>
+        <th>time of departure</th>
+        <th>destination</th>
+        <th>arrival time</th>
+        <th>tickets</th>
+    </tr>
+</thead>
+<tbody>
+    <tr *ngFor="let flightInfo of flights"> 
+        <td>{{ flightInfo.number }}</td>
+        <td>{{ flightInfo.departureFrom }}</td>
+        <td>{{ flightInfo.timeOfDeparture | date:'shortDate' }}</td>
+        <td>{{ flightInfo.destination }}</td>
+        <td>{{ flightInfo.arrivalTime | date:'shortDate' }}</td>
+        <td>
+            <a href="#" (click)="editRecord(this)">Edit</a>
+            <a href="#" (click)="deleteRecord(this)">Delete</a>
+        </td>
+    </tr>
+    <div class="col-md-8">
+        <form>
+            <div class="form-group">
+                <label for="departure-from">departure from:</label>
+                <input name="departureFrom"  id="departure-from" [(ngModel)]="newFlight.departureFrom" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="time-of-departure">time of departure</label>
+                <input name="departureTime" type="date" id="time-of-departure" [(ngModel)]="newFlight.timeOfDeparture" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="destination">destination</label>
+                <input name="destination"  id="destination" [(ngModel)]="newFlight.destination"  class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="arrival-time">arrival time</label>
+                <input name="arrivalTime"  type = "date" type="date" id="arrival-time" [(ngModel)]="newFlight.arrivalTime" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary" (click)="addFlight(newFlight);">Save</button>
+        </form>
+    </div>
+</tbody>
+</table>
