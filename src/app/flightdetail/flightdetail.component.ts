@@ -10,17 +10,28 @@ import { AirportService } from '../shared/airport.service';
 })
 export class FlightdetailComponent implements OnInit {
 
-  public id: number;
-
   public flight: Flight;
 
   constructor(private route: ActivatedRoute, private flightService: AirportService) { 
+    this.flight = new Flight();
     this.route.params.subscribe( params =>{
       flightService.getById(params.id).subscribe((data: Flight) => {
-        this.flight.number = data.number;
-        this.flight.destination = data.destination;
+        this.flight = data;
       });
     });
+  }
+
+   public saveEditing(flight: Flight){
+    let flightWithoutTickets = Object.assign({}, flight);
+    flight.tickets = null;
+    this.flightService.update(flight).subscribe(
+      flightRecord => {
+        if(flightRecord.isSuccessStatusCode == false){
+          alert("Wrong input");
+          return;
+        }
+      }
+    );
   }
 
   ngOnInit() {

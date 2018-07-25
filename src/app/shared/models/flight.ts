@@ -5,6 +5,6 @@ export class Flight{
     public departureFrom: string;
     public timeOfDeparture: Date;
     public destination: string;
-    public arrivlTime: Date;
+    public arrivalTime: Date;
     public tickets: Ticket[];
 }
