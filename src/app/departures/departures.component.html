@@ -56,6 +56,26 @@
               <label for="stewardess-surame">stewardess surname:</label>
               <input name="stewardess-surname" id="arrival-time" [(ngModel)]="newDepartre?.crew.stewardesses[0].surname" class="form-control" />
           </div>
+          <div class="form-group">
+                <label for="release-date">Release date:</label>
+                <input name="releaseDate" type = "date"  id="release-date" [(ngModel)]="newDeparture?.plane.releaseDate" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="planetype-model">Model:</label>
+                <input name="model"  id="planetype-model" [(ngModel)]="newDeparture?.plane.planeType.model" class="form-control">
+            </div>
+            <div class="form-group">
+                <label for="number-of-seats">number of seats:</label>
+                <input name="numberOfSeats" type="number" id="number-of-seats" [(ngModel)]="newDeparture.plane.planeType.numberOfSeats" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="load-capacity">load capacity: </label>
+                <input name="loadCapacity" type = "number"  id="loadd-capacity" [(ngModel)]="newDeparture.plane?.planeType.loadCapacity"  class="form-control" />
+            </div>
+            <div class="form-group">
+                    <label for="departure-time">departure time: </label>
+                    <input name="depTime" type = "date"  id="departure-time" [(ngModel)]="newDeparture.timeOfDeparture"  class="form-control" />
+            </div>
           <button type="button" class="btn btn-primary" (click)="addRecord(newDeparture);">Save</button>
       </form>
   </div>

@@ -1,3 +1,42 @@
-<p>
-  pilots works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-8">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Pilot name </th>
+                    <th>Pilot surname </th>
+                    <th>Pilot experience </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let pilot of pilots"> 
+                    <td>{{ pilot.id }}</td>
+                    <td>{{ pilot.name }}</td>
+                    <td>{{ pilot.surname }}</td>
+                    <td>{{ pilot.experience }}</td>
+                    <td>
+                        <button class="btn btn-link btn-sm"(click)="editRecord(pilot)">Detail(edit)</button> 
+                        <button class = "btn btn-danger btn-xs" (click)="deleteRecord(pilot.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="col-md-4">
+            <h3>Add Pilot</h3>
+            <div class="form-group">
+                <label for="pilot-from">pilot name:</label>
+                <input name="pilotname"  id="pilot-name" [(ngModel)]="newPilot.name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="pilot-surname">pilot surname:</label>
+                <input name="pilotSurname" id="pilot-surname" [(ngModel)]="newPilot.surname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="pilot-experi">pilot experience:</label>
+                <input name="pilotExperience" type = "number" id="pilot-experience" [(ngModel)]="newPilot.experience" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary" (click)="addRecord(newPilot);">Save</button>
+        </form>
+    </div>
+</div>

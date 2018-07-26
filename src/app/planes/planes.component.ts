@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Plane } from '../shared/models/plane';
 import { PlanesService } from '../shared/services/planes.service';
 import { Router } from '../../../node_modules/@angular/router';
+import { PlaneType } from '../shared/models/planetype';
 
 @Component({
   selector: 'app-planes',
@@ -16,6 +17,7 @@ export class PlanesComponent implements OnInit {
   constructor(private planeService: PlanesService, private router: Router) { 
     this.restoreData();
     this.newPlane = new Plane();
+    this.newPlane.planeType = new PlaneType();
   }
 
   private restoreData(){

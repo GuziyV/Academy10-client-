@@ -1,3 +1,46 @@
-<p>
-  stewardesses works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-8">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>name</th>
+                    <th>Surname</th>
+                    <th>Date of Birth</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let stewardess of stewardesses"> 
+                    <td>{{ stewardess.id }}</td>
+                    <td>{{ stewardess.name }}</td>
+                    <td>{{ stewardess.surname }}</td>
+                    <td>{{ stewardess.dateOfBirth | date: 'short' }}</td>
+                    <td>
+                        <button class="btn btn-link btn-sm"(click)="editRecord(stewardess)">Detail(edit)</button> 
+                        <button class = "btn btn-danger btn-xs" (click)="deleteRecord(stewardess.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form *ngIf='newStewardess' class="col-md-4">
+            <h3>Add Stewardess</h3>
+            <div class="form-group" >
+                <label for="stewardess-name">stewardess name:</label>
+                <input name="stewardessName"  id="stewardess-name" [(ngModel)]="newStewardess.name"  class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="stewardess-surname">stewardess surname:</label>
+                <input name="stewardess-surname" id="stewardess-surname" [(ngModel)]="newStewardess.surname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="stewardess-date">stewardess surname:</label>
+                <input name="stewardess-date" id="stewardess-date" type = "date" [(ngModel)]="newStewardess.dateOfBirth" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="stewardess-flight-number">stewardess flight number:</label>
+                <input name="stewardess-flight-number" id="stewardess-flight-number" type = "number" [(ngModel)]="newStewardess.crewId" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary" (click)="addRecord(newStewardess);">Save</button>
+        </form>
+    </div>
+</div>

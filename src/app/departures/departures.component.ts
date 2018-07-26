@@ -7,6 +7,7 @@ import { Crew } from '../shared/models/crew';
 import { Flight } from '../shared/models/flight';
 import { Pilot } from '../shared/models/pilot';
 import { Stewardess } from '../shared/models/stewardess';
+import { PlaneType } from '../shared/models/planetype';
 
 @Component({
   selector: 'app-departures',
@@ -22,6 +23,7 @@ export class DepartureComponent implements OnInit {
     this.restoreData();
     this.newDeparture = new Departure();
     this.newDeparture.plane = new Plane();
+    this.newDeparture.plane.planeType = new PlaneType();
     this.newDeparture.crew = new Crew();
     this.newDeparture.flight = new Flight();
     this.newDeparture.crew.pilot = new Pilot();
@@ -34,12 +36,12 @@ export class DepartureComponent implements OnInit {
   }
 
   private restoreData(){
-    this.departureService.get().subscribe((data: Departure[]) => {this.departures = data; console.log(this.departures);});
+    this.departureService.get().subscribe((data: Departure[]) => {this.departures = data;});
   }
 
   public addRecord(newDeparture: Departure){
     let inserDeparture = Object.assign({}, newDeparture);
-    this.departureService.add(inserDeparture).subscribe(
+    this.departureService.add(newDeparture).subscribe(
       HttpInfo => {
         this.restoreData();
       });

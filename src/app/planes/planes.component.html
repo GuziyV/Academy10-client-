@@ -1,3 +1,43 @@
-<p>
-  planes works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-10">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Release Date:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let plane of planes"> 
+                    <td>{{ plane.id }}</td>
+                    <td>{{ plane.releaseDate | date: 'short' }}</td>
+                    <td>
+                        <button class="btn btn-link btn-sm"(click)="editRecord(plane)">Detail(edit)</button> 
+                        <button class = "btn btn-danger btn-xs" (click)="deleteRecord(plane.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="col-md-2">
+          <h3>Add Plane</h3>
+              <div class="form-group">
+                  <label for="release-date">Release date:</label>
+                  <input name="release-date" type = "date"  id="release-date" [(ngModel)]="newPlane.releaseDate" class="form-control">
+              </div>
+              <div class="form-group">
+                  <label for="planetype-model">Model:</label>
+                  <input name="planetype-model"  id="planetype-model" [(ngModel)]="newPlane.planeType.model" class="form-control">
+              </div>
+              <div class="form-group">
+                  <label for="number-of-seats">number of seats:</label>
+                  <input name="number-of-seats" type="number" id="number-of-seats" [(ngModel)]="newPlane.planeType.numberOfSeats" class="form-control" />
+              </div>
+              <div class="form-group">
+                  <label for="load-capacity">load capacity: </label>
+                  <input name="load-capacity" type = "number"  id="loadd-capacity" [(ngModel)]="newPlane.planeType.loadCapacity"  class="form-control" />
+              </div>
+            <button type="button" class="btn btn-primary" (click)="addRecord(newPlane);">Save</button>
+        </form>
+    </div>
+  </div>
+  

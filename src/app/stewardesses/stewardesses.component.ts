@@ -11,11 +11,11 @@ import { Router } from '../../../node_modules/@angular/router';
 export class StewardessesComponent implements OnInit {
 
   public stewardesses: Stewardess[];
-  public newStewardes: Stewardess;
+  public newStewardess: Stewardess;
 
   constructor(private stewardessService: StewardessesService, private router: Router) { 
     this.restoreData();
-    this.newStewardes = new Stewardess();
+    this.newStewardess = new Stewardess();
   }
 
   ngOnInit() {
@@ -26,8 +26,8 @@ export class StewardessesComponent implements OnInit {
     this.stewardessService.get().subscribe((data: Stewardess[]) => this.stewardesses = data);
   }
 
-  public addRecord(newStewardes: Stewardess){
-    let insertStewardes = Object.assign({}, newStewardes);
+  public addRecord(newStewardess: Stewardess){
+    let insertStewardes = Object.assign({}, newStewardess);
     this.stewardessService.add(insertStewardes).subscribe(
       HttpInfo => {
         this.restoreData();
