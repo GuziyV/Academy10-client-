@@ -1,7 +1,7 @@
 import { Component, OnInit, Input } from '@angular/core';
 import {ActivatedRoute} from "@angular/router";
 import { Flight } from '../shared/models/flight';
-import { FlightsService } from '../shared/flights.service';
+import { FlightsService } from '../shared/services/flights.service';
 
 @Component({
   selector: 'app-flightdetail',
@@ -24,14 +24,7 @@ export class FlightdetailComponent implements OnInit {
    public saveEditing(flight: Flight){
     let flightWithoutTickets = Object.assign({}, flight);
     flightWithoutTickets.tickets = null;
-    this.flightService.update(flightWithoutTickets).subscribe(
-      flightRecord => {
-        if(flightRecord.isSuccessStatusCode == false){
-          alert("Wrong input");
-          return;
-        }
-      }
-    );
+    this.flightService.update(flightWithoutTickets).subscribe();
   }
 
   ngOnInit() {

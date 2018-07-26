@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TicketsService } from '../shared/services/tickets.service';
+import { Ticket } from '../shared/models/ticket';
+import { Router } from '../../../node_modules/@angular/router';
 
 @Component({
   selector: 'app-tickets',
@@ -7,9 +10,38 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TicketsComponent implements OnInit {
 
-  constructor() { }
+  public tickets: Ticket[];
+  public newTicket: Ticket;
 
-  ngOnInit() {
+  constructor(private ticketService: TicketsService, private router: Router) { 
+    this.restoreData();
+    this.newTicket = new Ticket();
   }
 
-}
+  ngOnInit() {
+
+  }
+
+  private restoreData(){
+    this.ticketService.get().subscribe((data: Ticket[]) => this.tickets = data);
+  }
+
+  public addRecord(newTicket: Ticket){
+    let insertTicket = Object.assign({}, newTicket);
+    this.ticketService.add(insertTicket).subscribe(
+      HttpInfo => {
+        this.restoreData();
+      });
+  }
+
+  public deleteRecord(id: Number){
+    this.ticketService.remove(id).subscribe(
+      HttpInfo => {
+        this.restoreData();
+   });   
+  }
+  public editRecord(Ticket: Ticket){
+    let url = 'ticket-details/' + Ticket.id; 
+    this.router.navigateByUrl(url);
+  }
+};

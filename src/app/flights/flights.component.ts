@@ -1,5 +1,5 @@
 import { Component, OnInit, NgModule } from '@angular/core';
-import { FlightsService } from '../shared/flights.service';
+import { FlightsService } from '../shared/services/flights.service';
 import { Flight } from '../shared/models/flight';
 import { Router } from '@angular/router';
 @Component({
@@ -14,7 +14,7 @@ export class FlightsComponent implements OnInit {
   public newFlight: Flight;
 
   constructor(private flightService: FlightsService, private router: Router) { 
-    flightService.get().subscribe((data: Flight[]) => this.flights = data);
+    this.restoreData();
     this.newFlight = new Flight();
   }
 
@@ -22,23 +22,22 @@ export class FlightsComponent implements OnInit {
 
   }
 
+  private restoreData(){
+    this.flightService.get().subscribe((data: Flight[]) => this.flights = data);
+  }
+
   public addFlight(newFlight: Flight){
     let insertFlight = Object.assign({}, newFlight);
     this.flightService.add(insertFlight).subscribe(
-      flightRecord => {
-        if(flightRecord.isSuccessStatusCode == false){
-          alert("Wrong input");
-          return;
-        }
-        insertFlight.number = this.flights[this.flights.length-1].number+1;
-        this.flights.push(insertFlight);
+      http => {
+        this.restoreData();
       });
   }
 
   public deleteRecord(number: Number){
     this.flightService.remove(number).subscribe(
-      flightRecord => {
-    this.flights = this.flights.filter(f => f.number != number)
+      http => {
+    this.restoreData();
    });   
   }
   public editRecord(flight: Flight){

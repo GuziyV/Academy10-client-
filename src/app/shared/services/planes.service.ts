@@ -1,14 +1,15 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { Flight } from './models/flight';
+import { environment } from '../../../environments/environment';
+import { Plane } from '../models/plane';
 
 @Injectable({
   providedIn: 'root'
 })
-export class FlightsService {
+export class PlanesService {
 
   private headers: HttpHeaders;
-  private accessPointUrl: string = 'http://localhost:43412/api/flights/';
+  private accessPointUrl: string = environment.apiUrl + 'planes/';
 
   constructor(private http: HttpClient) {
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
@@ -22,7 +23,7 @@ export class FlightsService {
     return this.http.get(this.accessPointUrl, {headers: this.headers});
   }
 
-  public add(entity: Flight) {
+  public add(entity: Plane) {
     return this.http.post(this.accessPointUrl, entity, {headers: this.headers});
   }
 
@@ -30,7 +31,7 @@ export class FlightsService {
     return this.http.delete(this.accessPointUrl + id, {headers: this.headers});
   }
 
-  public update(entity: Flight) {
-    return this.http.put(this.accessPointUrl + entity.number, entity, {headers: this.headers});
+  public update(entity: Plane) {
+    return this.http.put(this.accessPointUrl + entity.id, entity, {headers: this.headers});
   }
 }
