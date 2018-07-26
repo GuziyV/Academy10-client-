@@ -36,7 +36,7 @@ const appRoutes: Routes = [
   { path: 'pilot-details/:id', component: PilotdetailComponent},
   { path: 'planes', component: PlanesComponent },
   { path: 'plane-details/:id', component: PlanedetailComponent},
-  { path: 'planetypes', component: PlanesComponent },
+  { path: 'planetypes', component: PlaneTypesComponent },
   { path: 'planetype-details/:id', component: PlanetypedetailComponent},
   { path: 'stewardesses', component: StewardessesComponent },
   { path: 'stewardess-details/:id', component: StewardessdetailComponent},

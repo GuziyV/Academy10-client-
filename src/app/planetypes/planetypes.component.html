@@ -1,3 +1,43 @@
-<p>
-  planetypes works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-10">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Model of plane</th>
+                    <th>Number of seats</th>
+                    <th>Load Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let planetype of planeTypes"> 
+                    <td>{{ planetype.id }}</td>
+                    <td>{{ planetype.model }}</td>
+                    <td>{{ planetype.numberOfSeats }}</td>
+                    <td>{{ planetype.loadCapacity }}</td>
+                    <td>
+                        <button class="btn btn-link btn-sm"(click)="editRecord(planetype)">Detail(edit)</button> 
+                        <button class = "btn btn-danger btn-xs" (click)="deleteRecord(planetype.id)">Remove</button>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="col-md-2">
+          <h3>Add PlaneType</h3>
+              <div class="form-group">
+                  <label for="planetype-model">Model:</label>
+                  <input name="model"  id="planetype-model" [(ngModel)]="newPlaneType.model" class="form-control">
+              </div>
+              <div class="form-group">
+                  <label for="number-of-seats">number of seats:</label>
+                  <input name="numberOfSeats" type="number" id="number-of-seats" [(ngModel)]="newPlaneType.numberOfSeats" class="form-control" />
+              </div>
+              <div class="form-group">
+                  <label for="load-capacity">load capacity: </label>
+                  <input name="loadCapacity" type = "number"  id="loadd-capacity" [(ngModel)]="newPlaneType.loadCapacity"  class="form-control" />
+              </div>
+            <button type="button" class="btn btn-primary" (click)="addRecord(newPlaneType);">Save</button>
+        </form>
+    </div>
+  </div>
+  

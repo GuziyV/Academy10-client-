@@ -8,7 +8,7 @@
             </thead>
             <tbody>
                 <tr> 
-                    <td>{{ crew.id }}</td>
+                    <td>{{ crew?.id }}</td>
                 </tr>
                 <h4 class = "mt-5">Crew Pilot:</h4>
                 <tr>
@@ -18,10 +18,10 @@
                     <th>Pilot Experience</th>
                 </tr>
                 <tr> 
-                    <td>{{ crew.pilot.id }}</td>
-                    <td>{{ crew.pilot.name }}</td>
-                    <td>{{ crew.pilot.surname }}</td>
-                    <td>{{ crew.pilot.experience }}</td>
+                    <td>{{ crew.pilot?.id }}</td>
+                    <td>{{ crew.pilot?.name }}</td>
+                    <td>{{ crew.pilot?.surname }}</td>
+                    <td>{{ crew.pilot?.experience }}</td>
                 </tr>
                 <h4 class = "mt-5">Crew Stewardesses:</h4>
                 <tr>
