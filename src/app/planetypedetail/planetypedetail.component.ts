@@ -23,7 +23,9 @@ export class PlanetypedetailComponent implements OnInit {
 
    public saveEditing(planeType: PlaneType){
     let p = Object.assign({}, planeType);
-    this.planeTypeService.update(p).subscribe();
+    this.planeTypeService.update(p).subscribe(
+      HttpInfo => HttpInfo,
+      err => alert("Wrong input"));
   }
 
   ngOnInit() {

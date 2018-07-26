@@ -33,9 +33,8 @@ export class CrewsComponent implements OnInit {
   public addRecord(newCrew: Crew){
     let insertCrew = Object.assign({}, newCrew);
     this.crewsService.add(insertCrew).subscribe(
-      HttpInfo => {
-        this.restoreData();
-      });
+      HttpInfo => this.restoreData(),
+      err => alert("Wrong input"));
   }
 
   public deleteRecord(id: Number){

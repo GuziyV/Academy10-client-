@@ -29,9 +29,8 @@ export class PilotsComponent implements OnInit {
   public addRecord(newPilot: Pilot){
     let inserPilot = Object.assign({}, newPilot);
     this.pilotservice.add(inserPilot).subscribe(
-      HttpInfo => {
-        this.restoreData();
-      });
+      HttpInfo => this.restoreData(),
+      err => alert("Wrong input"));
   }
 
   public deleteRecord(id: Number){

@@ -23,7 +23,9 @@ export class TicketdetailComponent implements OnInit {
 
    public saveEditing(ticket: Ticket){
     let copy = Object.assign({}, ticket);
-    this.ticketService.update(copy).subscribe();
+    this.ticketService.update(copy).subscribe(
+      HttpInfo => HttpInfo,
+      err => alert("Wrong input"));
   }
 
   ngOnInit() {

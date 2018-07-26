@@ -24,7 +24,9 @@ export class CrewdetailComponent implements OnInit {
    public saveEditing(crew: Crew){
     let crewWithoutCollections = Object.assign({}, crew);
     crewWithoutCollections.stewardesses = null;
-    this.crewService.update(crewWithoutCollections).subscribe();
+    this.crewService.update(crewWithoutCollections).subscribe(
+      HttpInfo => HttpInfo,
+      err => alert("Wrong input"));
   }
 
   ngOnInit() {

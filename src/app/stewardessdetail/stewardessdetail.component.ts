@@ -23,7 +23,9 @@ export class StewardessdetailComponent implements OnInit {
 
    public saveEditing(stewardess: Stewardess){
     let copy = Object.assign({}, stewardess);
-    this.stewardessService.update(copy).subscribe();
+    this.stewardessService.update(copy).subscribe(
+      HttpInfo => HttpInfo,
+      err => alert("Wrong input"));
   }
 
   ngOnInit() {

@@ -23,7 +23,9 @@ export class PlanedetailComponent implements OnInit {
 
    public saveEditing(plane: Plane){
     let copy = Object.assign({}, plane);
-    this.planeService.update(copy).subscribe();
+    this.planeService.update(copy).subscribe(
+      HttpInfo => HttpInfo,
+      err => alert("Wrong input"));
   }
 
   ngOnInit() {

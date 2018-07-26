@@ -8,6 +8,8 @@ import { Flight } from '../shared/models/flight';
 import { Pilot } from '../shared/models/pilot';
 import { Stewardess } from '../shared/models/stewardess';
 import { PlaneType } from '../shared/models/planetype';
+import { CommonModule } from '@angular/common';  
+import { BrowserModule } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-departures',
@@ -49,9 +51,8 @@ export class DepartureComponent implements OnInit {
 
   public deleteRecord(id: Number){
     this.departureService.remove(id).subscribe(
-      HttpInfo => {
-    this.restoreData();
-   });   
+      HttpInfo => this.restoreData(),
+      err => alert("Wrong input")); 
   }
   public editRecord(departure: Departure){
     let url = 'departure-details/' + departure.id; 

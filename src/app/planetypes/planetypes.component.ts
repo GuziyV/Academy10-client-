@@ -29,9 +29,8 @@ export class PlaneTypesComponent implements OnInit {
   public addRecord(newPlaneType: PlaneType){
     let insertPlaneType = Object.assign({}, newPlaneType);
     this.planeTypeService.add(insertPlaneType).subscribe(
-      HttpInfo => {
-        this.restoreData();
-      });
+      HttpInfo => this.restoreData(),
+      err => alert("Wrong input"));
   }
 
   public deleteRecord(id: Number){

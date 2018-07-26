@@ -23,7 +23,9 @@ export class PilotdetailComponent implements OnInit {
 
    public saveEditing(pilot: Pilot){
     let copy = Object.assign({}, pilot);
-    this.pilotService.update(copy).subscribe();
+    this.pilotService.update(copy).subscribe(
+      HttpInfo => HttpInfo,
+      err => alert("Wrong input"));
   }
 
   ngOnInit() {

@@ -21,23 +21,23 @@
         <form class="col-md-4">
             <h3>Add Crew</h3>
             <div class="form-group">
-                <label for="pilot-from">pilot name:</label>
-                <input name="pilotname"  id="pilot-name" [(ngModel)]="newCrew.pilot.name" class="form-control" />
+                <label for="pilot-name">pilot name:</label>
+                <input name="pilot-name"  id="pilot-name" [(ngModel)]="newCrew.pilot.name" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="pilot-surname">pilot surname:</label>
-                <input name="pilotSurname" id="pilot-surname" [(ngModel)]="newCrew.pilot.surname" class="form-control" />
+                <input name="pilot-surname" id="pilot-surname" [(ngModel)]="newCrew.pilot.surname" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="pilot-experi">pilot experience:</label>
+                <label for="pilot-experience">pilot experience:</label>
                 <input name="pilotExperience" type = "number" id="pilot-experience" [(ngModel)]="newCrew.pilot.experience" class="form-control" />
             </div>
             <div class="form-group">
                 <label for="stewardess-name">stewardess name:</label>
-                <input name="stewardessName"  id="stewardess-name" [(ngModel)]="newCrew.stewardesses[0].name"  class="form-control" />
+                <input name="stewardess-name"  id="stewardess-name" [(ngModel)]="newCrew.stewardesses[0].name"  class="form-control" />
             </div>
             <div class="form-group">
-                <label for="stewardess-surame">stewardess surname:</label>
+                <label for="stewardess-surname">stewardess surname:</label>
                 <input name="stewardess-surname" id="arrival-time" [(ngModel)]="newCrew.stewardesses[0].surname" class="form-control" />
             </div>
             <button type="button" class="btn btn-primary" (click)="addRecord(newCrew);">Save</button>

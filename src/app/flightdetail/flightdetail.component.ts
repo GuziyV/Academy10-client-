@@ -24,7 +24,9 @@ export class FlightdetailComponent implements OnInit {
    public saveEditing(flight: Flight){
     let flightWithoutTickets = Object.assign({}, flight);
     flightWithoutTickets.tickets = null;
-    this.flightService.update(flightWithoutTickets).subscribe();
+    this.flightService.update(flightWithoutTickets).subscribe(
+      HttpInfo => HttpInfo,
+      err => alert("Wrong input"));
   }
 
   ngOnInit() {

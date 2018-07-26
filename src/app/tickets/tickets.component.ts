@@ -31,14 +31,13 @@ export class TicketsComponent implements OnInit {
     this.ticketService.add(insertTicket).subscribe(
       HttpInfo => {
         this.restoreData();
-      });
+      }, err => alert("Wrong input"));
   }
 
   public deleteRecord(id: Number){
     this.ticketService.remove(id).subscribe(
-      HttpInfo => {
-        this.restoreData();
-   });   
+      HttpInfo => this.restoreData(),
+      err => alert("Wrong input"));
   }
   public editRecord(Ticket: Ticket){
     let url = 'ticket-details/' + Ticket.id; 

@@ -36,9 +36,8 @@ export class StewardessesComponent implements OnInit {
 
   public deleteRecord(id: Number){
     this.stewardessService.remove(id).subscribe(
-      HttpInfo => {
-      this.restoreData();
-   });   
+      HttpInfo => this.restoreData(),
+      err => alert("Wrong input"));
   }
   public editRecord(Stewardess: Stewardess){
     let url = 'stewardess-details/' + Stewardess.id; 
