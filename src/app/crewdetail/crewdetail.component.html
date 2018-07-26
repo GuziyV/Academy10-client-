@@ -1,3 +1,46 @@
-<p>
-  crewdetail works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-10">
+            <thead>
+                <tr>
+                    <th>id</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ crew.id }}</td>
+                </tr>
+                <h4 class = "mt-5">Crew Pilot:</h4>
+                <tr>
+                    <th>Pilot Id</th>
+                    <th>Pilot Name</th>
+                    <th>Pilot Surumber</th>
+                    <th>Pilot Experience</th>
+                </tr>
+                <tr> 
+                    <td>{{ crew.pilot.id }}</td>
+                    <td>{{ crew.pilot.name }}</td>
+                    <td>{{ crew.pilot.surname }}</td>
+                    <td>{{ crew.pilot.experience }}</td>
+                </tr>
+                <h4 class = "mt-5">Crew Stewardesses:</h4>
+                <tr>
+                    <th>Stewardess Id</th>
+                    <th>Stewardess Name</th>
+                    <th>Stewardess Surname</th>
+                    <th>Stewardess date of birth</th>
+                </tr>
+                <tr *ngFor ="let stewardess of crew.stewardesses"> 
+                    <td>{{ stewardess.id }}</td>
+                    <td>{{ stewardess.name }}</td>
+                    <td>{{ stewardess.surname }}</td>
+                    <td>{{ stewardess.dateOfBirth | date:'short' }}</td>
+                </tr>
+            </tbody>
+        </table>
+       <form class="col-md-2">
+            <h3>Edit Crew</h3>
+            <p class ="text-info">there is nothing to edit in this section, please go to the Stewardess or Pilot Section</p>
+        </form> 
+    </div>
+</div>

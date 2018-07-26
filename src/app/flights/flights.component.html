@@ -28,7 +28,7 @@
             <h3>Add Flight</h3>
             <div class="form-group">
                 <label for="departure-from">departure from:</label>
-                <input name="departureFrom"  id="departure-from" [(ngModel)]="newFlight.departureFrom" class="form-control" />
+                <input name="departureFrom"  id="departure-from" [(ngModel)]="newFlight.departureFrom" class="form-control">
             </div>
             <div class="form-group">
                 <label for="time-of-departure">time of departure</label>
@@ -40,7 +40,7 @@
             </div>
             <div class="form-group">
                 <label for="arrival-time">arrival time</label>
-                <input name="arrivalTime"  type = "date" type="date" id="arrival-time" [(ngModel)]="newFlight.arrivalTime" class="form-control" />
+                <input name="arrivalTime"   type="date" id="arrival-time" [(ngModel)]="newFlight.arrivalTime" class="form-control" />
             </div>
             <button type="button" class="btn btn-primary" (click)="addFlight(newFlight);">Save</button>
         </form>

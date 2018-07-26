@@ -2,6 +2,8 @@ import { Component, OnInit, NgModule } from '@angular/core';
 import { Crew } from '../shared/models/crew';
 import { Router } from '@angular/router';
 import { CrewsService } from '../shared/services/crews.service';
+import { Pilot } from '../shared/models/pilot';
+import { Stewardess } from '../shared/models/stewardess';
 @Component({
   selector: 'app-crews',
   templateUrl: './crews.component.html',
@@ -16,6 +18,8 @@ export class CrewsComponent implements OnInit {
   constructor(private crewsService: CrewsService, private router: Router) { 
     this.restoreData();
     this.newCrew = new Crew();
+    this.newCrew.pilot = new Pilot();
+    this.newCrew.stewardesses =  [new Stewardess()];
   }
 
   private restoreData(){
