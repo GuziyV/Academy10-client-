@@ -25,7 +25,7 @@ export class PlanetypedetailComponent implements OnInit {
     let p = Object.assign({}, planeType);
     this.planeTypeService.update(p).subscribe(
       HttpInfo => HttpInfo,
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
 
   ngOnInit() {

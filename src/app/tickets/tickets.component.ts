@@ -12,14 +12,26 @@ export class TicketsComponent implements OnInit {
 
   public tickets: Ticket[];
   public newTicket: Ticket;
+  public formMistake: string;
 
   constructor(private ticketService: TicketsService, private router: Router) { 
     this.restoreData();
     this.newTicket = new Ticket();
+    this.formMistake = "";
   }
 
   ngOnInit() {
 
+  }
+
+  private validateTicket(newTicket: Ticket): boolean
+  {
+    if(newTicket.flightNumber == undefined || newTicket.flightNumber == 0)
+    {
+      this.formMistake = "you should enter flight number";
+      return false;
+    }
+    return true;
   }
 
   private restoreData(){
@@ -27,17 +39,22 @@ export class TicketsComponent implements OnInit {
   }
 
   public addRecord(newTicket: Ticket){
-    let insertTicket = Object.assign({}, newTicket);
+    if(this.validateTicket(newTicket)){
+      let insertTicket = Object.assign({}, newTicket);
     this.ticketService.add(insertTicket).subscribe(
       HttpInfo => {
         this.restoreData();
-      }, err => alert("Wrong input"));
+        this.formMistake = "no";
+      }, err => {
+        this.formMistake = "Values not match with database";
+      });
+    }
+    
   }
 
   public deleteRecord(id: Number){
     this.ticketService.remove(id).subscribe(
-      HttpInfo => this.restoreData(),
-      err => alert("Wrong input"));
+      HttpInfo => this.restoreData());
   }
   public editRecord(Ticket: Ticket){
     let url = 'ticket-details/' + Ticket.id; 

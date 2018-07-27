@@ -1,3 +1,72 @@
-<p>
-  departuredetail works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-10">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Time of departure</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ departure.id }}</td>
+                    <td>{{ departure.timeOfDeparture | date: 'short' }}</td>
+                </tr>
+            </tbody>
+            <h3 class="mt-5">Crew: </h3>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Pilot</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ departure.crew.id }}</td>
+                    <td>{{ departure.crew.pilot.surname }}</td>
+                </tr>
+            </tbody>
+            <h3 class="mt-5">Flight:</h3>
+            <thead>
+                <tr>
+                    <th>Number</th>
+                    <th>Departure from</th>
+                    <th>Time of departure</th>
+                    <th>Destination</th>
+                    <th>Arrival time</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ departure.flight.number }}</td>
+                    <td>{{ departure.flight.departureFrom }}</td>
+                    <td>{{ departure.flight.timeOfDeparture | date:'short' }}</td>
+                    <td>{{ departure.flight.destination }}</td>
+                    <td>{{ departure.flight.arrivalTime | date:'short' }}</td>
+                </tr>
+            </tbody>
+            <h3 class="mt-5">Plane: </h3>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Release Date:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ departure.plane.id }}</td>
+                    <td>{{ departure.plane.releaseDate | date: 'short' }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="col-md-2">
+          <h3>Edit Departure</h3>
+              <div class="form-group">
+                  <label for="departure-time">departure time: </label>
+                  <input name="departure-time" type = "date"  id="departure-time" [(ngModel)]="departure.timeOfDeparture"  class="form-control" />
+              </div>
+            <button type="button" class="btn btn-primary" (click)="saveEditing(departure);">Save</button>
+        </form>
+    </div>
+  </div>
+  

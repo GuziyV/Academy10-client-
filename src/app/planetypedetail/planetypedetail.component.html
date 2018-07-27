@@ -1,3 +1,39 @@
-<p>
-  planetypedetail works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-10">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Model of plane</th>
+                    <th>Number of seats</th>
+                    <th>Load Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ planeType.id }}</td>
+                    <td>{{ planeType.model }}</td>
+                    <td>{{ planeType.numberOfSeats }}</td>
+                    <td>{{ planeType.loadCapacity }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="col-md-2">
+          <h3>Edit PlaneType</h3>
+              <div class="form-group">
+                  <label for="planetype-model">Model:</label>
+                  <input name="model"  id="planetype-model" [(ngModel)]="planeType.model" class="form-control">
+              </div>
+              <div class="form-group">
+                  <label for="number-of-seats">number of seats:</label>
+                  <input name="number-of-eats" type="number" id="number-of-seats" [(ngModel)]="planeType.numberOfSeats" class="form-control" />
+              </div>
+              <div class="form-group">
+                  <label for="load-capacity">load capacity: </label>
+                  <input name="load-capacity" type = "number"  id="load-capacity" [(ngModel)]="planeType.loadCapacity"  class="form-control" />
+              </div>
+            <button type="button" class="btn btn-primary" (click)="saveEditing(planeType);">Save</button>
+        </form>
+    </div>
+  </div>
+  

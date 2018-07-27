@@ -25,7 +25,7 @@ export class TicketdetailComponent implements OnInit {
     let copy = Object.assign({}, ticket);
     this.ticketService.update(copy).subscribe(
       HttpInfo => HttpInfo,
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
 
   ngOnInit() {

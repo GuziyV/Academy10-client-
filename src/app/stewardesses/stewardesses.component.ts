@@ -27,11 +27,11 @@ export class StewardessesComponent implements OnInit {
   }
 
   public addRecord(newStewardess: Stewardess){
+    console.log(newStewardess);
     let insertStewardes = Object.assign({}, newStewardess);
     this.stewardessService.add(insertStewardes).subscribe(
-      HttpInfo => {
-        this.restoreData();
-      });
+      HttpInfo => this.restoreData(),
+      err => alert("Values not match with database"));
   }
 
   public deleteRecord(id: Number){

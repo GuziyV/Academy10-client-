@@ -26,7 +26,7 @@ export class CrewdetailComponent implements OnInit {
     crewWithoutCollections.stewardesses = null;
     this.crewService.update(crewWithoutCollections).subscribe(
       HttpInfo => HttpInfo,
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
 
   ngOnInit() {

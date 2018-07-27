@@ -44,9 +44,8 @@ export class DepartureComponent implements OnInit {
   public addRecord(newDeparture: Departure){
     let inserDeparture = Object.assign({}, newDeparture);
     this.departureService.add(newDeparture).subscribe(
-      HttpInfo => {
-        this.restoreData();
-      });
+      HttpInfo => this.restoreData(),
+      err => alert("Values not match with database"));
   }
 
   public deleteRecord(id: Number){

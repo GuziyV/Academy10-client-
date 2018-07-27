@@ -32,7 +32,7 @@ export class PlanesComponent implements OnInit {
     let insertPlane = Object.assign({}, newPlane);
     this.planeService.add(insertPlane).subscribe(
       HttpInfo => this.restoreData(),
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
 
   public deleteRecord(id: Number){

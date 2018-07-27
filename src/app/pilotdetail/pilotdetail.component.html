@@ -1,3 +1,38 @@
-<p>
-  pilotdetail works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-8">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Name </th>
+                    <th>Surname </th>
+                    <th>Experience </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ pilot.id }}</td>
+                    <td>{{ pilot.name }}</td>
+                    <td>{{ pilot.surname }}</td>
+                    <td>{{ pilot.experience }}</td>
+                </tr>
+            </tbody>
+        </table>
+        <form class="col-md-4">
+            <h3>Edit Pilot</h3>
+            <div class="form-group">
+                <label for="pilot-name">pilot name:</label>
+                <input name="pilot-name"  id="pilot-name" [(ngModel)]="pilot.name" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="pilot-surname">pilot surname:</label>
+                <input name="pilot-surname" id="pilot-surname" [(ngModel)]="pilot.surname" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="pilot-experience">pilot experience:</label>
+                <input name="pilot-experience" type = "number" id="pilot-experience" [(ngModel)]="pilot.experience" class="form-control" />
+            </div>
+            <button type="button" class="btn btn-primary" (click)="saveEditing(pilot);">Save</button>
+        </form>
+    </div>
+</div>

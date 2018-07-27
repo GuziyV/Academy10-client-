@@ -26,7 +26,7 @@ export class FlightdetailComponent implements OnInit {
     flightWithoutTickets.tickets = null;
     this.flightService.update(flightWithoutTickets).subscribe(
       HttpInfo => HttpInfo,
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
 
   ngOnInit() {

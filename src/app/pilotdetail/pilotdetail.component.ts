@@ -25,7 +25,7 @@ export class PilotdetailComponent implements OnInit {
     let copy = Object.assign({}, pilot);
     this.pilotService.update(copy).subscribe(
       HttpInfo => HttpInfo,
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
 
   ngOnInit() {

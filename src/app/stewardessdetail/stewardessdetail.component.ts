@@ -25,7 +25,7 @@ export class StewardessdetailComponent implements OnInit {
     let copy = Object.assign({}, stewardess);
     this.stewardessService.update(copy).subscribe(
       HttpInfo => HttpInfo,
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
 
   ngOnInit() {

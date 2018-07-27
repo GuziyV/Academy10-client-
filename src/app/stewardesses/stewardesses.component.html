@@ -33,11 +33,11 @@
                 <input name="stewardess-surname" id="stewardess-surname" [(ngModel)]="newStewardess.surname" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="stewardess-date">stewardess surname:</label>
+                <label for="stewardess-date">stewardess date:</label>
                 <input name="stewardess-date" id="stewardess-date" type = "date" [(ngModel)]="newStewardess.dateOfBirth" class="form-control" />
             </div>
             <div class="form-group">
-                <label for="stewardess-flight-number">stewardess flight number:</label>
+                <label for="stewardess-flight-number">stewardess crewId:</label>
                 <input name="stewardess-flight-number" id="stewardess-flight-number" type = "number" [(ngModel)]="newStewardess.crewId" class="form-control" />
             </div>
             <button type="button" class="btn btn-primary" (click)="addRecord(newStewardess);">Save</button>

@@ -1,3 +1,44 @@
-<p>
-  planedetail works!
-</p>
+<div class="container">
+    <div class="row">
+        <table class = "col-md-10">
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Release Date:</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ plane.id }}</td>
+                    <td>{{ plane.releaseDate | date: 'short' }}</td>
+                </tr>
+            </tbody>
+            <h4 class = "mt-5">PlaneType: </h4>
+            <thead>
+                <tr>
+                    <th>Id</th>
+                    <th>Model of plane</th>
+                    <th>Number of seats</th>
+                    <th>Load Capacity</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr> 
+                    <td>{{ plane.planeType.id }}</td>
+                    <td>{{ plane.planeType.model }}</td>
+                    <td>{{ plane.planeType.numberOfSeats }}</td>
+                    <td>{{ plane.planeType.loadCapacity }}</td>
+                </tr>
+            </tbody>     
+        </table>
+        <form class="col-md-2">
+          <h3>Edit Plane</h3>
+              <div class="form-group">
+                  <label for="release-date">Release date:</label>
+                  <input name="release-date" type = "date"  id="release-date" [(ngModel)]="plane.releaseDate" class="form-control">
+              </div>
+            <button type="button" class="btn btn-primary" (click)="saveEditing(plane);">Save</button>
+        </form>
+    </div>
+  </div>
+  

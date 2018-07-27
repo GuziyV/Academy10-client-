@@ -37,7 +37,7 @@ export class FlightsComponent implements OnInit {
   public deleteRecord(number: Number){
     this.flightService.remove(number).subscribe(
       HttpInfo => this.restoreData(),
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
   public editRecord(flight: Flight){
     let url = 'flight-details/' + flight.number; 

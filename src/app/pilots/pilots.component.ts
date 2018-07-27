@@ -30,7 +30,7 @@ export class PilotsComponent implements OnInit {
     let inserPilot = Object.assign({}, newPilot);
     this.pilotservice.add(inserPilot).subscribe(
       HttpInfo => this.restoreData(),
-      err => alert("Wrong input"));
+      err => alert("Values not match with database"));
   }
 
   public deleteRecord(id: Number){
