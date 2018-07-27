@@ -30,7 +30,6 @@ export class StewardessesComponent implements OnInit {
 
   public addRecord(newStewardess: Stewardess){
     if((this.formMistake = this.stewardessService.validateStewardess(newStewardess)) == "no"){
-    console.log(newStewardess);
     let insertStewardes = Object.assign({}, newStewardess);
     this.stewardessService.add(insertStewardes).subscribe(
       HttpInfo => {

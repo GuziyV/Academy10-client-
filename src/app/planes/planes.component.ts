@@ -17,6 +17,7 @@ export class PlanesComponent implements OnInit {
   public formMistake: string;
 
   constructor(private planeService: PlanesService, private router: Router) { 
+    this.formMistake = "";
     this.restoreData();
     this.newPlane = new Plane();
     this.newPlane.planeType = new PlaneType();
@@ -26,15 +27,6 @@ export class PlanesComponent implements OnInit {
     this.planeService.get().subscribe((data: Plane[]) => this.planes = data);
   }
 
-  validatePlanetype(plane: Plane): boolean{
-    if(plane.planeType.model =="")
-    {
-      this.formMistake = "you should enter model";
-      return false;
-    }
-    return true;
-  }
-
   ngOnInit() {
 
   }
@@ -42,6 +34,7 @@ export class PlanesComponent implements OnInit {
   public addRecord(newPlane: Plane){
 
     let insertPlane = Object.assign({}, newPlane);
+    if((this.formMistake = this.planeService.validatePlane(newPlane)) == "no"){
     this.planeService.add(insertPlane).subscribe(
       HttpInfo => {
         this.restoreData();
@@ -49,6 +42,7 @@ export class PlanesComponent implements OnInit {
       }, err => {
         this.formMistake = "Values not match with database";
       });
+    }
   }
 
   public deleteRecord(id: Number){

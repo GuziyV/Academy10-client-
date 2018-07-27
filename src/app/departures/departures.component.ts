@@ -20,9 +20,11 @@ export class DepartureComponent implements OnInit {
 
   public departures: Departure[];
   public newDeparture: Departure;
+  public formMistake: string;
 
   constructor(private departureService: DeparturesService, private router: Router) { 
     this.restoreData();
+    this.formMistake = "";
     this.newDeparture = new Departure();
     this.newDeparture.plane = new Plane();
     this.newDeparture.plane.planeType = new PlaneType();
@@ -42,10 +44,16 @@ export class DepartureComponent implements OnInit {
   }
 
   public addRecord(newDeparture: Departure){
+    if((this.formMistake = this.departureService.validateDeparture(newDeparture)) == "no"){
     let inserDeparture = Object.assign({}, newDeparture);
     this.departureService.add(newDeparture).subscribe(
-      HttpInfo => this.restoreData(),
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.restoreData();
+        this.formMistake = "no";
+      }, err => {
+        this.formMistake = "Values not match with database";
+      });
+    }
   }
 
   public deleteRecord(id: Number){

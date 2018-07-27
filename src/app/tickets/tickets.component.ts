@@ -30,7 +30,7 @@ export class TicketsComponent implements OnInit {
   }
 
   public addRecord(newTicket: Ticket){
-    if(this.ticketService.validateTicket(newTicket) == "no"){
+    if((this.formMistake = this.ticketService.validateTicket(newTicket)) == "no"){
       let insertTicket = Object.assign({}, newTicket);
     this.ticketService.add(insertTicket).subscribe(
       HttpInfo => {

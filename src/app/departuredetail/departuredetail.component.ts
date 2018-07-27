@@ -17,6 +17,7 @@ import { Stewardess } from '../shared/models/stewardess';
 export class DeparturedetailComponent  {
 
   public departure: Departure;
+  public formMistake: string;
 
   constructor(private route: ActivatedRoute, private departureService: DeparturesService) { 
     this.departure = new Departure();
@@ -26,6 +27,7 @@ export class DeparturedetailComponent  {
     this.departure.flight = new Flight();
     this.departure.crew.pilot = new Pilot();
     this.departure.crew.stewardesses =  [new Stewardess()];
+    this.formMistake = "";
     this.restoreData();
   }
 
@@ -38,6 +40,7 @@ export class DeparturedetailComponent  {
   }
 
    public saveEditing(departure: Departure){
+    if((this.formMistake = this.departureService.validateDeparture(departure)) == "no"){
     console.log(departure);
     let copy = Object.assign({}, departure);
     copy.flight.tickets = undefined
@@ -49,7 +52,12 @@ export class DeparturedetailComponent  {
     copy.flight.number = undefined;
 
     this.departureService.update(copy).subscribe(
-      HttpInfo => this.restoreData(),
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.formMistake = "no";
+        this.restoreData();
+      }, err => {
+        this.formMistake = "Values not match with database";
+      });
     }
   }
+}

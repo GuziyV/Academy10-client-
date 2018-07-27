@@ -34,4 +34,19 @@ export class FlightsService {
   public update(entity: Flight) {
     return this.http.put(this.accessPointUrl + entity.number, entity, {headers: this.headers});
   }
+  public validateFlight(flight: Flight): string{
+    if(flight.departureFrom == undefined || flight.departureFrom =="" || flight.departureFrom.length > 25){
+      return "you should enter correct departure";
+    }
+    if(flight.arrivalTime == undefined){
+      return "you should enter correct arrival time";
+    }
+    if(flight.destination == undefined || flight.destination == ""){
+      return "you should enter correct destination";
+    }
+    if(flight.timeOfDeparture == undefined){
+      return "you should enter correct destination";
+    }
+    return "no";
+  }
 }

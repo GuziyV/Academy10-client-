@@ -8,12 +8,14 @@ import { FlightsService } from '../shared/services/flights.service';
   templateUrl: './flightdetail.component.html',
   styleUrls: ['./flightdetail.component.css']
 })
-export class FlightdetailComponent implements OnInit {
+export class FlightdetailComponent {
 
   public flight: Flight;
+  public formMistake: string;
 
   constructor(private route: ActivatedRoute, private flightService: FlightsService) { 
     this.flight = new Flight();
+    this.formMistake = "";
     this.route.params.subscribe( params =>{
       flightService.getById(params.id).subscribe((data: Flight) => {
         this.flight = data;
@@ -22,14 +24,17 @@ export class FlightdetailComponent implements OnInit {
   }
 
    public saveEditing(flight: Flight){
+    if((this.formMistake = this.flightService.validateFlight(flight)) == "no"){
     let flightWithoutTickets = Object.assign({}, flight);
     flightWithoutTickets.tickets = null;
     this.flightService.update(flightWithoutTickets).subscribe(
-      HttpInfo => HttpInfo,
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.formMistake = "no";
+      }, err => {
+        this.formMistake = "Values not match with database";
+      });
+    }
   }
 
-  ngOnInit() {
-  }
 
 }

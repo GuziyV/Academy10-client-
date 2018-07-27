@@ -30,7 +30,6 @@ export class PlaneTypesComponent implements OnInit {
 
 
   public addRecord(newPlaneType: PlaneType){
-    debugger;
     if((this.formMistake = this.planeTypeService.validatePlanetype(newPlaneType)) == "no"){
     let insertPlaneType = Object.assign({}, newPlaneType);
     this.planeTypeService.add(insertPlaneType).subscribe(

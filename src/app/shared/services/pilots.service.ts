@@ -34,4 +34,13 @@ export class PilotsService {
   public update(entity: Pilot) {
     return this.http.put(this.accessPointUrl + entity.id, entity, {headers: this.headers});
   }
+  public validatePilot(pilot: Pilot): string{
+    if(pilot.name == undefined || pilot.name =="" || pilot.name.length > 20){
+      return "you should enter correct name";
+    }
+    if(pilot.surname == "" || pilot.surname == undefined || pilot.surname.length > 25){
+      return "you should enter correct surname";
+    }
+    return "no";
+  }
 }

@@ -12,9 +12,11 @@ export class PilotsComponent implements OnInit {
 
   public pilots: Pilot[];
   public newPilot: Pilot;
+  public formMistake: string;
 
   constructor(private pilotservice: PilotsService, private router: Router) { 
     this.restoreData();
+    this.formMistake = "";
     this.newPilot = new Pilot();
   }
 
@@ -27,10 +29,16 @@ export class PilotsComponent implements OnInit {
   }
 
   public addRecord(newPilot: Pilot){
+    if((this.formMistake = this.pilotservice.validatePilot(newPilot)) == "no"){
     let inserPilot = Object.assign({}, newPilot);
     this.pilotservice.add(inserPilot).subscribe(
-      HttpInfo => this.restoreData(),
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.formMistake = "no";
+        this.restoreData();
+      }, err => {
+        this.formMistake = "Values not match with database";
+      });
+    }
   }
 
   public deleteRecord(id: Number){

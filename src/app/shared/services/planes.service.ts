@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from '../../../environments/environment';
 import { Plane } from '../models/plane';
+import { PlanetypesService } from './planetypes.service';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class PlanesService {
   private headers: HttpHeaders;
   private accessPointUrl: string = environment.apiUrl + 'planes/';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private planeTypeService: PlanetypesService) {
     this.headers = new HttpHeaders({'Content-Type': 'application/json; charset=utf-8'});
   }
 
@@ -33,5 +34,12 @@ export class PlanesService {
 
   public update(entity: Plane) {
     return this.http.put(this.accessPointUrl + entity.id, entity, {headers: this.headers});
+  }
+
+  public validatePlane(plane: Plane): string{
+    if(plane.releaseDate == undefined){
+      return "you should enter date";
+    }
+    return this.planeTypeService.validatePlanetype(plane.planeType);
   }
 }

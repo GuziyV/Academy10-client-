@@ -14,12 +14,15 @@ export class CrewsComponent implements OnInit {
 
   public crews: Crew[];
   public newCrew: Crew;
+  public formMistake: string;
 
   constructor(private crewsService: CrewsService, private router: Router) { 
     this.restoreData();
+    this.formMistake ="";
     this.newCrew = new Crew();
     this.newCrew.pilot = new Pilot();
-    this.newCrew.stewardesses =  [new Stewardess()];
+    let st = new Stewardess();
+    this.newCrew.stewardesses =  [st];
   }
 
   private restoreData(){
@@ -31,10 +34,16 @@ export class CrewsComponent implements OnInit {
   }
 
   public addRecord(newCrew: Crew){
+    if((this.formMistake = this.crewsService.validateCrew(newCrew)) == "no"){
     let insertCrew = Object.assign({}, newCrew);
     this.crewsService.add(insertCrew).subscribe(
-      HttpInfo => this.restoreData(),
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.formMistake = "no";
+        this.restoreData();
+      }, err => {
+        this.formMistake = "Values not match with database";
+      });
+    }
   }
 
   public deleteRecord(id: Number){

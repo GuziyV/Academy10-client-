@@ -12,9 +12,11 @@ export class FlightsComponent implements OnInit {
 
   public flights: Flight[];
   public newFlight: Flight;
+  public formMistake: string;
 
   constructor(private flightService: FlightsService, private router: Router) { 
     this.restoreData();
+    this.formMistake = "";
     this.newFlight = new Flight();
   }
 
@@ -27,11 +29,16 @@ export class FlightsComponent implements OnInit {
   }
 
   public addFlight(newFlight: Flight){
+    if((this.formMistake = this.flightService.validateFlight(newFlight)) == "no"){
     let insertFlight = Object.assign({}, newFlight);
     this.flightService.add(insertFlight).subscribe(
-      http => {
+      HttpInfo => {
+        this.formMistake = "no";
         this.restoreData();
+      }, err => {
+        this.formMistake = "Values not match with database";
       });
+    }
   }
 
   public deleteRecord(number: Number){

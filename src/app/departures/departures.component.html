@@ -57,6 +57,10 @@
               <input name="stewardess-surname" id="stewardess-surname" [(ngModel)]="newDeparture.crew.stewardesses[0].surname" class="form-control" />
           </div>
           <div class="form-group">
+                <label for="stewardess-crew">stewardess crewId:</label>
+                <input name="stewardess-crew" id="stewardess-crew" type = "number" [(ngModel)]="newDeparture.crew.stewardesses[0].crewId" class="form-control" />
+            </div>
+          <div class="form-group">
                 <label for="release-date">Release date:</label>
                 <input name="release-date" type = "date"  id="release-date" [(ngModel)]="newDeparture.plane.releaseDate" class="form-control">
             </div>
