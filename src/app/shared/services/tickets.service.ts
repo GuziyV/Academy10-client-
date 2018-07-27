@@ -34,4 +34,12 @@ export class TicketsService {
   public update(entity: Ticket) {
     return this.http.put(this.accessPointUrl + entity.id, entity, {headers: this.headers});
   }
+  public validateTicket(newTicket: Ticket): string
+  {
+    if(newTicket.flightNumber == undefined || newTicket.flightNumber == 0)
+    {
+      return  "you should enter flight number";
+    }
+    return "no";
+  }
 }

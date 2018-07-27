@@ -38,6 +38,8 @@
                 <label for="stewardess-crew-number">stewardess crewId:</label>
                 <input name="stewardess-crew-number" id="stewardess-crew-number" type = "number" [(ngModel)]="stewardess.crewId" class="form-control" />
             </div>
+            <div *ngIf='formMistake != "" && formMistake != "no"' class='alert alert-danger'>{{ formMistake }}</div>
+            <div *ngIf='formMistake == "no"' class='alert alert-success'>Saved </div>
             <button type="button" class="btn btn-primary" (click)="saveEditing(stewardess);">Save</button>
         </form>
     </div>

@@ -36,6 +36,8 @@
                   <label for="load-capacity">load capacity: </label>
                   <input name="load-capacity" type = "number"  id="load-capacity" [(ngModel)]="newPlaneType.loadCapacity"  class="form-control" />
               </div>
+              <div *ngIf='formMistake != "" && formMistake != "no"' class='alert alert-danger'>{{ formMistake }}</div>
+              <div *ngIf='formMistake == "no"' class='alert alert-success'>Saved </div>
             <button type="button" class="btn btn-primary" (click)="addRecord(newPlaneType);">Save</button>
         </form>
     </div>

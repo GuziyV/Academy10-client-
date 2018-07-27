@@ -11,9 +11,11 @@ import { Ticket } from '../shared/models/ticket';
 export class TicketdetailComponent implements OnInit {
 
   public ticket: Ticket;
+  public formMistake: string;
 
   constructor(private route: ActivatedRoute, private ticketService: TicketsService) { 
     this.ticket = new Ticket();
+    this.formMistake = "";
     this.route.params.subscribe( params =>{
       ticketService.getById(params.id).subscribe((data: Ticket) => {
         this.ticket = data;
@@ -21,11 +23,17 @@ export class TicketdetailComponent implements OnInit {
     });
   }
 
+
    public saveEditing(ticket: Ticket){
+    if(this.ticketService.validateTicket(ticket) == "no"){
     let copy = Object.assign({}, ticket);
     this.ticketService.update(copy).subscribe(
-      HttpInfo => HttpInfo,
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.formMistake = "no";
+      }, err => {
+        this.formMistake = "No such flight in database";
+      });
+    }
   }
 
   ngOnInit() {

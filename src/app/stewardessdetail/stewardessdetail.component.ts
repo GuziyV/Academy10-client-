@@ -11,8 +11,9 @@ import { StewardessesService } from '../shared/services/stewardesses.service';
 export class StewardessdetailComponent implements OnInit {
 
   public stewardess: Stewardess;
-
+  public formMistake: string;
   constructor(private route: ActivatedRoute, private stewardessService: StewardessesService) { 
+    this.formMistake = "";
     this.stewardess = new Stewardess();
     this.route.params.subscribe( params =>{
       stewardessService.getById(params.id).subscribe((data: Stewardess) => {
@@ -21,11 +22,17 @@ export class StewardessdetailComponent implements OnInit {
     });
   }
 
+
    public saveEditing(stewardess: Stewardess){
+    if((this.formMistake = this.stewardessService.validateStewardess(stewardess)) == "no"){
     let copy = Object.assign({}, stewardess);
     this.stewardessService.update(copy).subscribe(
-      HttpInfo => HttpInfo,
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.formMistake = "no";
+      }, err => {
+        this.formMistake = "No such crew in database";
+      });
+    }
   }
 
   ngOnInit() {

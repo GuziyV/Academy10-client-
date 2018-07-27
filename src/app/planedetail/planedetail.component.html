@@ -37,6 +37,8 @@
                   <label for="release-date">Release date:</label>
                   <input name="release-date" type = "date"  id="release-date" [(ngModel)]="plane.releaseDate" class="form-control">
               </div>
+              <div *ngIf='formMistake != "" && formMistake != "no"' class='alert alert-danger'>{{ formMistake }}</div>
+              <div *ngIf='formMistake == "no"' class='alert alert-success'>Saved </div>
             <button type="button" class="btn btn-primary" (click)="saveEditing(plane);">Save</button>
         </form>
     </div>

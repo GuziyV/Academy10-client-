@@ -40,6 +40,8 @@
                 <label for="stewardess-surname">stewardess surname:</label>
                 <input name="stewardess-surname" id="arrival-time" [(ngModel)]="newCrew.stewardesses[0].surname" class="form-control" />
             </div>
+            <div *ngIf='formMistake != "" && formMistake != "no"' class='alert alert-danger'>{{ formMistake }}</div>
+            <div *ngIf='formMistake == "no"' class='alert alert-success'>Saved </div>
             <button type="button" class="btn btn-primary" (click)="addRecord(newCrew);">Save</button>
         </form>
     </div>

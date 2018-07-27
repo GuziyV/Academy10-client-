@@ -12,10 +12,12 @@ export class PlaneTypesComponent implements OnInit {
 
   public planeTypes: PlaneType[];
   public newPlaneType: PlaneType;
+  public formMistake: string;
 
   constructor(private planeTypeService: PlanetypesService, private router: Router) { 
     this.restoreData();
     this.newPlaneType = new PlaneType();
+    this.formMistake = "";
   }
 
   private restoreData(){
@@ -26,11 +28,19 @@ export class PlaneTypesComponent implements OnInit {
 
   }
 
+
   public addRecord(newPlaneType: PlaneType){
+    debugger;
+    if((this.formMistake = this.planeTypeService.validatePlanetype(newPlaneType)) == "no"){
     let insertPlaneType = Object.assign({}, newPlaneType);
     this.planeTypeService.add(insertPlaneType).subscribe(
-      HttpInfo => this.restoreData(),
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.formMistake = "no";
+        this.restoreData();
+      }, err => {
+        this.formMistake = "Values not match with database";
+      });
+    }
   }
 
   public deleteRecord(id: Number){

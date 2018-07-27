@@ -34,4 +34,17 @@ export class PlanetypesService {
   public update(entity: PlaneType) {
     return this.http.put(this.accessPointUrl + entity.id, entity, {headers: this.headers});
   }
+
+  public validatePlanetype(planetype: PlaneType): string{
+    if(planetype.model == undefined || planetype.model ==""){
+      return "you should enter model";
+    }
+    if(planetype.numberOfSeats <= 0 || planetype.numberOfSeats == undefined){
+      return "you should correct number of seats";
+    }
+    if(planetype.loadCapacity <= 0 || planetype.loadCapacity == undefined){
+      return "you should enter correct load capacity";
+    }
+    return "no";
+  }
 }

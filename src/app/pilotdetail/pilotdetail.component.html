@@ -32,6 +32,8 @@
                 <label for="pilot-experience">pilot experience:</label>
                 <input name="pilot-experience" type = "number" id="pilot-experience" [(ngModel)]="pilot.experience" class="form-control" />
             </div>
+            <div *ngIf='formMistake != "" && formMistake != "no"' class='alert alert-danger'>{{ formMistake }}</div>
+            <div *ngIf='formMistake == "no"' class='alert alert-success'>Saved </div>
             <button type="button" class="btn btn-primary" (click)="saveEditing(pilot);">Save</button>
         </form>
     </div>

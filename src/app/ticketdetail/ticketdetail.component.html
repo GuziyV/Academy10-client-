@@ -27,6 +27,8 @@
                     <label for="flight-number">Flight number:</label>
                     <input name="flight-number" type="number" id="flight-number" [(ngModel)]="ticket.flightNumber" class="form-control" />
                 </div>
+              <div *ngIf='formMistake != "" && formMistake != "no"' class='alert alert-danger'>{{ formMistake }}</div>
+              <div *ngIf='formMistake == "no"' class='alert alert-success'>Saved </div>
               <button type="button" class="btn btn-primary" (click)="saveEditing(ticket);">Save</button>
           </form>
     </div>

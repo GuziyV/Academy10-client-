@@ -12,10 +12,12 @@ export class StewardessesComponent implements OnInit {
 
   public stewardesses: Stewardess[];
   public newStewardess: Stewardess;
+  public formMistake: string;
 
   constructor(private stewardessService: StewardessesService, private router: Router) { 
     this.restoreData();
     this.newStewardess = new Stewardess();
+    this.formMistake = "";
   }
 
   ngOnInit() {
@@ -27,11 +29,17 @@ export class StewardessesComponent implements OnInit {
   }
 
   public addRecord(newStewardess: Stewardess){
+    if((this.formMistake = this.stewardessService.validateStewardess(newStewardess)) == "no"){
     console.log(newStewardess);
     let insertStewardes = Object.assign({}, newStewardess);
     this.stewardessService.add(insertStewardes).subscribe(
-      HttpInfo => this.restoreData(),
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.restoreData();
+        this.formMistake = "no";
+      }, err => {
+        this.formMistake = "No such crew in database";
+      });
+    }
   }
 
   public deleteRecord(id: Number){

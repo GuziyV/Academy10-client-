@@ -49,6 +49,8 @@
                 <label for="arrival-time">arrival time</label>
                 <input name="arrivalTime"  type = "date" type="date" id="arrival-time" [(ngModel)]="flight.arrivalTime" class="form-control" />
             </div>
+            <div *ngIf='formMistake != "" && formMistake != "no"' class='alert alert-danger'>{{ formMistake }}</div>
+            <div *ngIf='formMistake == "no"' class='alert alert-success'>Saved </div>
             <button type="button" class="btn btn-primary" (click)="saveEditing(flight);">Save</button>
         </form> 
     </div>

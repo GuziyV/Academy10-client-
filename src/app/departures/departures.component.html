@@ -76,6 +76,8 @@
                 <label for="departure-time">departure time: </label>
                 <input name="departure-time" type = "date"  id="departure-time" [(ngModel)]="newDeparture.timeOfDeparture"  class="form-control" />
             </div>
+            <div *ngIf='formMistake != "" && formMistake != "no"' class='alert alert-danger'>{{ formMistake }}</div>
+            <div *ngIf='formMistake == "no"' class='alert alert-success'>Saved </div>
           <button type="button" class="btn btn-primary" (click)="addRecord(newDeparture);">Save</button>
       </form>
   </div>

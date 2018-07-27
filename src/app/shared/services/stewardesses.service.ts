@@ -34,4 +34,15 @@ export class StewardessesService {
   public update(entity: Stewardess) {
     return this.http.put(this.accessPointUrl + entity.id, entity, {headers: this.headers});
   }
+
+  public validateStewardess(stewardess: Stewardess){
+    if(stewardess.name == undefined || stewardess.surname == undefined || stewardess.name == "" || stewardess.surname == "")
+    {
+      return "you should enter name and surname";
+    }
+    if(stewardess.crewId == undefined || stewardess.crewId <= 0){
+      return "you should enter correct crewId"
+    }
+    return "no";
+  }
 }

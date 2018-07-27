@@ -24,29 +24,20 @@ export class TicketsComponent implements OnInit {
 
   }
 
-  private validateTicket(newTicket: Ticket): boolean
-  {
-    if(newTicket.flightNumber == undefined || newTicket.flightNumber == 0)
-    {
-      this.formMistake = "you should enter flight number";
-      return false;
-    }
-    return true;
-  }
 
   private restoreData(){
     this.ticketService.get().subscribe((data: Ticket[]) => this.tickets = data);
   }
 
   public addRecord(newTicket: Ticket){
-    if(this.validateTicket(newTicket)){
+    if(this.ticketService.validateTicket(newTicket) == "no"){
       let insertTicket = Object.assign({}, newTicket);
     this.ticketService.add(insertTicket).subscribe(
       HttpInfo => {
         this.restoreData();
         this.formMistake = "no";
       }, err => {
-        this.formMistake = "Values not match with database";
+        this.formMistake = "No such flight in database";
       });
     }
     

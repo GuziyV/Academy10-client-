@@ -11,9 +11,10 @@ import { PlanetypesService } from '../shared/services/planetypes.service';
 export class PlanetypedetailComponent implements OnInit {
 
   public planeType: PlaneType;
-
+  public formMistake: string;
   constructor(private route: ActivatedRoute, private planeTypeService: PlanetypesService) { 
     this.planeType = new PlaneType();
+    this.formMistake = "";
     this.route.params.subscribe( params =>{
       planeTypeService.getById(params.id).subscribe((data: PlaneType) => {
         this.planeType = data;
@@ -21,11 +22,17 @@ export class PlanetypedetailComponent implements OnInit {
     });
   }
 
+
    public saveEditing(planeType: PlaneType){
+    if((this.formMistake = this.planeTypeService.validatePlanetype(planeType)) == "no"){
     let p = Object.assign({}, planeType);
     this.planeTypeService.update(p).subscribe(
-      HttpInfo => HttpInfo,
-      err => alert("Values not match with database"));
+      HttpInfo => {
+        this.formMistake = "no";
+      }, err => {
+        this.formMistake = "Values not match with database";
+      });
+    }
   }
 
   ngOnInit() {
